@@ -61,8 +61,8 @@ class Sorensen(_BaseSimilarity):
     """
     Compute the Sorensen distance between the two sequences.
     They should contain hashable items.
-    The return value is a float between 0 and 1, where 0 means equal,
-    and 1 totally different.
+    The return value is a float between 0 and 1, where 1 means equal,
+    and 0 totally different.
 
     https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/dice.js
@@ -89,7 +89,11 @@ class Sorensen(_BaseSimilarity):
 
 
 class Tversky(_BaseSimilarity):
-    """Tversky index
+    """
+    Compute the Tversky index for two sequences.
+    They should contain hashable items.
+    The return value is a float between 0 and 1, where 1 means equal,
+    and 0 totally different
 
     https://en.wikipedia.org/wiki/Tversky_index
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/tversky.js
@@ -139,7 +143,11 @@ class Tversky(_BaseSimilarity):
 
 
 class Overlap(_BaseSimilarity):
-    """overlap coefficient
+    """
+    Compute the Overlap coefficient for two sequences.
+    They should contain hashable items.
+    The return value is a float between 0 and 1, where 1 means equal,
+    and 0 totally different
 
     https://en.wikipedia.org/wiki/Overlap_coefficient
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/overlap.js
@@ -172,7 +180,11 @@ class Overlap(_BaseSimilarity):
 
 
 class Cosine(_BaseSimilarity):
-    """cosine similarity (Ochiai coefficient)
+    """
+    Compute the Cosine similarity (Ochiai coefficient) for two sequences.
+    They should contain hashable items.
+    The return value is a float between 0 and 1, where 1 means equal,
+    and 0 totally different
 
     https://en.wikipedia.org/wiki/Cosine_similarity
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/cosine.js
@@ -206,9 +218,16 @@ class Cosine(_BaseSimilarity):
 
 
 class Tanimoto(Jaccard):
-    """Tanimoto distance
+    """
+    Compute the Tanimoto distance between two sequences.
+    They should contain hashable items.
+    The return value is a float between -inf and 0, where 0 means equal,
+    and -inf totally different
+    
     This is identical to the Jaccard similarity coefficient
     and the Tversky index for alpha=1 and beta=1.
+
+    https://en.wikipedia.org/wiki/Jaccard_index#Tanimoto_similarity_and_distance
     """
 
     def __call__(self, *sequences: Sequence) -> float:
@@ -221,6 +240,11 @@ class Tanimoto(Jaccard):
 
 class MongeElkan(_BaseSimilarity):
     """
+    Compute the Monge Elkan distance between two sequences.
+    They should contain hashable items.
+    The return value is a float between 0 and 2, where 2 means equal,
+    and 0 totally different.
+    
     https://www.academia.edu/200314/Generalized_Monge-Elkan_Method_for_Approximate_Text_String_Comparison
     http://www.cs.cmu.edu/~wcohen/postscript/kdd-2003-match-ws.pdf
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/monge-elkan.js
@@ -274,7 +298,14 @@ class MongeElkan(_BaseSimilarity):
 
 
 class Bag(_Base):
-    """Bag distance
+    """
+    Compute the Bag distance between two sequences.
+    They should contain hashable items.
+    The return value is a float between 0 and N, where 0 means equal,
+    and N totally different. N would, at most, be the length of the 
+    longest sequence in the comparison.
+    
+    http://www-db.disi.unibo.it/research/papers/SPIRE02.pdf
     https://github.com/Yomguithereal/talisman/blob/master/src/metrics/bag.js
     """
 
